@@ -41,10 +41,10 @@ public class Customer implements Serializable {
     @Setter(onMethod = @__({@JsonProperty}))
     private String pin;
 
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "customer")
-//    private Set<Account> accounts;
-//
+    @JsonIgnore
+    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER) //um cliente pode ter varias contas
+    private Set<Account> accounts;
+
 //    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "atm_id")
 //    private ATM atm;

@@ -25,6 +25,10 @@ public class Account implements Serializable {
     @Column(name = "balance", nullable = false)//não coloca o setBalance, pois o saldo não pode ser modificado (encapsulamento)
     protected BigDecimal balance;
 
+    @ManyToOne //muitas contas para 1 cliente
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
 //    @JsonIgnore
 //    @OneToMany(mappedBy = "account")
 //    private Set<AtmTransactions> transactions;
@@ -32,10 +36,6 @@ public class Account implements Serializable {
 //    @ManyToOne
 //    @JoinColumn(name = "bank_id")
 //    private Bank bank;
-//
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "customer_id")
-//    private Customer customer;
 
     public void deposit(BigDecimal amount) {
         balance = balance.add(amount);
