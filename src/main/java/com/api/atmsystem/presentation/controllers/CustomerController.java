@@ -17,13 +17,10 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/api/customers")
 public class CustomerController {
 
     private CustomerService customerService;
-
-    private CustomerConverterServiceImpl customerConverterService;
 
     public CustomerController(CustomerService customerService) {
 
