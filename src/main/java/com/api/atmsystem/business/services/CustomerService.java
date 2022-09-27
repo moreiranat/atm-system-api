@@ -6,7 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -19,7 +18,6 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    @Transactional
     public Customer save(Customer customer) {
         if (customer.getId() != null) {
             throw new IllegalStateException("Customer is already in the database");
@@ -34,7 +32,6 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
-    @Transactional
     public void delete(Customer customer) {
         customerRepository.delete(customer);
     }
