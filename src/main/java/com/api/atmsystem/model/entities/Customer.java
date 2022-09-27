@@ -30,11 +30,6 @@ public class Customer implements Serializable {
     @Column(nullable = false)
     private String address;
 
-//    @Column(nullable = false)
-//    @JsonFormat(pattern = "dd/MM/yy")
-//    @DateTimeFormat(pattern = "dd/MM/yy")
-//    private LocalDate dateOfBirth;
-
     @Column(nullable = false, unique = true, length = 30)
     private String cardNumber;
 

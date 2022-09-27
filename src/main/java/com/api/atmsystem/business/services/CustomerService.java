@@ -2,8 +2,6 @@ package com.api.atmsystem.business.services;
 
 import com.api.atmsystem.model.entities.Customer;
 import com.api.atmsystem.model.repositories.CustomerRepository;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -51,16 +49,6 @@ public class CustomerService {
         return customerRepository.findById(id);
     }
 
-    public Iterable<Customer> findByFilter(Customer filter) {
-
-        Example example = Example.of(filter,
-                ExampleMatcher.matching()
-                        .withIgnoreCase()
-                        .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING));
-
-        return customerRepository.findAll(example);
-    }
-
     public boolean existsByName(String name) {
 
         return customerRepository.existsByName(name);
@@ -71,21 +59,3 @@ public class CustomerService {
         return customerRepository.existsByCardNumber(cardNumber);
     }
 }
-
-//******************************************************************
-//    @Transactional
-//    public void delete(Long id) {
-//        Customer customer = findById(id);
-//
-//        if (customer == null) {
-//            throw new IllegalStateException(String.format("Could not find a entity with id=%1", id));
-//        }
-//        customerRepository.deleteById((id));
-//    }
-//
-//    public Customer findById(Long id) {
-//        if(id == null) {
-//            throw new IllegalStateException("Id cannot be null");
-//        }
-//        return customerRepository.findById(id).get();
-//    }
