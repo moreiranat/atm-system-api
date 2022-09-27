@@ -51,7 +51,7 @@ public class CustomerService {
         return customerRepository.findById(id);
     }
 
-    public Iterable<Customer> find(Customer filter) {
+    public Iterable<Customer> findByFilter(Customer filter) {
 
         Example example = Example.of(filter,
                 ExampleMatcher.matching()

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -29,9 +30,10 @@ public class Customer implements Serializable {
     @Column(nullable = false)
     private String address;
 
-    @Column
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    private LocalDate dateOfBirth;
+//    @Column(nullable = false)
+//    @JsonFormat(pattern = "dd/MM/yy")
+//    @DateTimeFormat(pattern = "dd/MM/yy")
+//    private LocalDate dateOfBirth;
 
     @Column(nullable = false, unique = true, length = 30)
     private String cardNumber;
