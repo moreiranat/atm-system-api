@@ -1,14 +1,12 @@
 package com.api.atmsystem.model.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Set;
 
 @Data
@@ -33,10 +31,14 @@ public class Customer implements Serializable {
     @Column(nullable = false, unique = true, length = 30)
     private String cardNumber;
 
-    @Column(nullable = false, unique = true, length = 30)
+    @Column(nullable = false, length = 30)
     @Getter(onMethod = @__({@JsonIgnore}))
     @Setter(onMethod = @__({@JsonProperty}))
     private String pin;
+
+    @Column(nullable = false, unique = true, length = 11)
+    @CPF
+    private String cpf;
 
     @JsonIgnore
     @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER) //um cliente pode ter varias contas

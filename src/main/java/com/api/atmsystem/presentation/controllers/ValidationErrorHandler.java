@@ -1,5 +1,6 @@
 package com.api.atmsystem.presentation.controllers;
 
+import com.api.atmsystem.exception.NotFoundException;
 import com.api.atmsystem.presentation.dtos.ErrorDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -22,7 +23,7 @@ public class ValidationErrorHandler {
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public List<ErrorDto> handle(MethodArgumentNotValidException exception) {
+    public List<ErrorDto> handleCustomerBadRequest(MethodArgumentNotValidException exception) {
         List<ErrorDto> dto = new ArrayList<>();
 
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
@@ -34,4 +35,5 @@ public class ValidationErrorHandler {
 
         return dto;
     }
+
 }

@@ -46,13 +46,15 @@ public class CustomerService {
         return customerRepository.findById(id);
     }
 
-    public boolean existsByName(String name) {
+    public boolean existsByCpf(String cpf) {
 
-        return customerRepository.existsByName(name);
+        return customerRepository.existsByCpf(cpf);
     }
 
     public boolean existsByCardNumber(String cardNumber) {
 
         return customerRepository.existsByCardNumber(cardNumber);
     }
+
+
 }
