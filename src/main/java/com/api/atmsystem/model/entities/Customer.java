@@ -37,6 +37,8 @@ public class Customer implements Serializable {
     private String pin;
 
     @Column(nullable = false, unique = true, length = 11)
+    @Getter(onMethod = @__({@JsonIgnore}))
+    @Setter(onMethod = @__({@JsonProperty}))
     @CPF
     private String cpf;
 
