@@ -1,6 +1,5 @@
 package com.api.atmsystem.presentation.controllers;
 
-import com.api.atmsystem.exception.NotFoundException;
 import com.api.atmsystem.presentation.dtos.ErrorDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
