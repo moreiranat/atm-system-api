@@ -41,8 +41,8 @@ public class Customer implements Serializable {
     private String cpf;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "customer", fetch = FetchType.EAGER) //um cliente pode ter varias contas
-    private Set<Account> accounts;
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY) //um cliente pode ter varias contas
+    private Set<Account> accounts; //Lazy: carregado do banco apenas quando de fato necessário
 
 //    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "atm_id")
