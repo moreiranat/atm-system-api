@@ -2,20 +2,20 @@ package com.api.atmsystem.presentation.controllers;
 
 import com.api.atmsystem.business.services.CustomerService;
 import com.api.atmsystem.model.entities.Customer;
-import com.api.atmsystem.model.repositories.CustomerRepository;
 import com.api.atmsystem.presentation.dtos.CustomerDto;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -23,7 +23,6 @@ import java.util.Optional;
 public class CustomerController {
 
     private CustomerService customerService;
-
 
     public CustomerController(CustomerService customerService) {
 
@@ -54,7 +53,8 @@ public class CustomerController {
     @ApiResponses({
             @ApiResponse(code = 200, message = "Customers found")
     })
-    public ResponseEntity<Page<Customer>> findAllCustomers(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable){
+    public ResponseEntity<Page<Customer>> findAllCustomers(@PageableDefault(page = 0, size = 10, sort = "id",
+                                                                direction = Sort.Direction.ASC) Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(customerService.findAll(pageable));
     }
 
@@ -106,18 +106,3 @@ public class CustomerController {
     }
 
 }
-
-
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Object> updateCustomer(@PathVariable(value = "id") Long id,
-//                                                 @RequestBody @Valid CustomerDto customerDto){
-//        Optional<Customer> customerOptional = customerService.findById(id);
-//        if (!customerOptional.isPresent()) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Customer not found.");
-//        }
-//        var customer = customerOptional.get();
-//        var idDoCustomer = customerOptional.get().getId();
-//        BeanUtils.copyProperties(customerDto, customer);
-//        customer.setId(idDoCustomer);
-//        return ResponseEntity.status(HttpStatus.OK).body(customerService.update(customer));
-//    }

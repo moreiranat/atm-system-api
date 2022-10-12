@@ -31,7 +31,7 @@ public class CustomerDto {
     private String pin;
 
     @NotBlank
-    @CPF(message = "informe um CPF válido")
+    @CPF(message = "Informe um CPF válido")
     private String cpf;
 
 }
